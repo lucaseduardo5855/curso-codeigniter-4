@@ -37,4 +37,23 @@ class Main extends BaseController
         echo "<br>";
         echo $valor3;
     }
+
+    public function ph_alpha($valor1, $valor2)
+    {
+        echo $valor1;
+        echo "<br>";
+        echo $valor2;
+    }
+
+    public function ph_alphanum($valor1, $valor2)
+    {
+        echo "estou usando alphanum: $valor1";
+        echo "estou usando alphanum: $valor2";
+    }
+
+    public function users_post($valor1, $valor2)
+    {
+        echo "estou usando o $valor1 ";
+        echo "estou usando o $valor2 ";
+    }
 }
