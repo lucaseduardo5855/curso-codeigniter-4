@@ -41,3 +41,14 @@ body{
 .btn-products:hover {
   background-position: bottom center; /* Desliza suavemente para o segundo gradiente */
 }
+
+.product-box{
+  background-color: #2F2B24;
+  border-radius: 25px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.product-text-color{
+  color: #FFC926;
+}
