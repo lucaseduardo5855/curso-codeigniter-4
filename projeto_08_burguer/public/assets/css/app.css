@@ -52,3 +52,14 @@ body{
 .product-text-color{
   color: #FFC926;
 }
+
+.where-we-are-title{
+  color: #FFC926;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.where-we-are-subtitle{
+  color: #FFC926;
+  font-size: 2rem;
+}

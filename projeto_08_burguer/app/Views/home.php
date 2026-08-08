@@ -33,7 +33,7 @@
 
   
     <!--main -->
-    <section class="container-fluid bg-color-02">
+    <section class="container-fluid bg-color-02 mt-4">
       <div class="row">
         <div class="col text-center p-5">
           <div class="mb-5">
