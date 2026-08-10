@@ -54,4 +54,42 @@ class Home extends BaseController
         
         return view('pagina_cinco', $data);
     }
+
+    public function metodo_seis()
+    {
+        $nomes = [
+            'Lucas',
+            'Pedro',
+            'Gui',
+            'Fer',
+            'Gab',
+            'Ana'
+        ];
+
+        // $data['nomes'] = $nomes;
+
+        return view('pagina_seis', ['nomes' => $nomes]);
+    }
+
+    public function metodo_sete()
+    {
+        $clientes = [
+            'Fernando',
+            'Gabriel',
+            'Lucas',
+            'Pedro',
+            'Ana',
+            'Maria',
+        ];
+
+        $id_cliente = 5;
+        $mostrar_mensagem = true;
+
+        return view('pagina_sete', [
+            'nomes_clientes' => $clientes,
+            'id' => $id_cliente,
+            'show_message' => $mostrar_mensagem
+        ]);
+    }   
+    
 }

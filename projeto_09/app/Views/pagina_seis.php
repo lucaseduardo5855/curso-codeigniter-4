@@ -11,13 +11,17 @@
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-8 text-center card p-5 shadow">
-        <h1 class="text-primary">Página Cinco</h1>
+        <h1 class="text-primary">Página Seis</h1>
         <hr>
-        <h3><?= $id ?? 'ID não informado' ?></h3>
-        <h3><?= $id ?? 'ID não informado' ?></h3>
+        <h3>
+            <ul class="text-start">
+              <?php foreach ($nomes as $nome): ?>
+                <li><?= $nome ?></li>
+              <?php endforeach; ?>
+            </ul>
+        </h3>
       </div>
     </div>
   </div>
-
 </body>
 </html>
