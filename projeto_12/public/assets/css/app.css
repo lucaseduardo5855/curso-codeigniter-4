@@ -1,0 +1,65 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #28251e;
+  color: white;
+}
+
+.nav-link{
+  color: #ffa54C;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.nav-link:hover{
+  color: #ffc926;
+}
+
+.bg-color-02{
+  background-color: #2F2B24;
+}
+
+.btn-products {
+  /* Combinamos os dois gradientes em um único fundo duplo (200% de altura) */
+  background: linear-gradient(to bottom, #FFDB04, #FFA100, #FFF6C3, #FFC96C);
+  background-size: 100% 200%; /* Dobra o tamanho vertical para esconder a segunda metade */
+  background-position: top center; /* Mostra o primeiro gradiente */
+  
+  color: black;
+  padding: 10px 50px;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-position 0.4s ease-in-out; /* Transiciona a posição do fundo */
+}
+
+.btn-products:hover {
+  background-position: bottom center; /* Desliza suavemente para o segundo gradiente */
+}
+
+.product-box{
+  background-color: #2F2B24;
+  border-radius: 25px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.product-text-color{
+  color: #FFC926;
+}
+
+.where-we-are-title{
+  color: #FFC926;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.where-we-are-subtitle{
+  color: #FFC926;
+  font-size: 2rem;
+}
