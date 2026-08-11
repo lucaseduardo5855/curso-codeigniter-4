@@ -1,0 +1,1 @@
+<div style="text-align: center">Footer &copy; 2026</div>
