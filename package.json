@@ -1,0 +1,13 @@
+{
+  "name": "cig-burguer-bo",
+  "version": "1.0.0",
+  "description": "CigBurguer Backend",
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,json,yml,yaml,md}\" && php-cs-fixer fix",
+    "format:js": "prettier --write \"**/*.{js,json,yml,yaml,md}\"",
+    "format:php": "php-cs-fixer fix"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}

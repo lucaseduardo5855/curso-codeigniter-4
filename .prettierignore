@@ -1,0 +1,6 @@
+vendor
+writable
+builds
+node_modules
+.git
+public/index.php
