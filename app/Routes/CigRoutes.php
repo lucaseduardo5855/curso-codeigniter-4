@@ -6,7 +6,10 @@ use Config\Services;
 
 $routes =  Services::routes();
 
-//cigBurguer bo routes
-$routes->get('/', 'Auth::index');
-$routes->get('/teste', 'Auth::teste');
-$routes->get('/teste_db', 'Auth::teste_db');
+//Main
+$routes->get('/', 'Main::index');
+
+//login e logout
+$routes->get('auth/login', 'Auth::login');
+$routes->get('auth/login_submit', 'Auth::login_submit');
+$routes->get('auth/logout', 'Auth::logout');

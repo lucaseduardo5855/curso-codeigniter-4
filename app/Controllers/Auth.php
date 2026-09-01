@@ -11,11 +11,11 @@ class Auth extends BaseController
 
     public function login_submit()
     {
-        return view('teste');
+       echo 'login submit';
     }
 
     public function logout()
     {
-
+        echo 'logout';
     }
 }
