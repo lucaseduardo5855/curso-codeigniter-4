@@ -1,13 +1,21 @@
-<?php 
+<?php
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-
-class Auth extends BaseController 
+class Auth extends BaseController
 {
-  public function index() 
-  {
-      echo "Auth Controller";
-  }
+    public function login()
+    {
+        return view('auth/login.frm.php');
+    }
+
+    public function login_submit()
+    {
+        return view('teste');
+    }
+
+    public function logout()
+    {
+
+    }
 }
