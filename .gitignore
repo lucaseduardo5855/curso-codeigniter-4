@@ -4,7 +4,9 @@ node_modules/
 package-lock.json
 .DS_Store
 
+# Configuracoes de ambiente e chaves
+.env
+
 # Arquivos de cache e formatadores
 .php-cs-fixer.cache
 .vscode/
-writable/
