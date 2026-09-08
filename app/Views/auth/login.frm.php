@@ -6,14 +6,14 @@
             <img src="<?= base_url('assets/images/logo.png') ?>" alt="Logo">
         </div>
 
-        <form action="#" method="post">
+        <?= form_open('/auth/login_submit') ?>
             <div class="mb-3">
                 <p class="mb-2">Restaurante</p>
-                <select name="select-restaurant" id="select-restaurant" class="form-select">
+                <select name="select_restaurant" id="select_restaurant" class="form-select">
                     <option value=""></option>
-                    <option value="">Restaurante 1</option>
-                    <option value="">Restaurante 2</option>
-                    <option value="">Restaurante 3</option>
+                    <?php foreach ($restaurantes as $restaurant): ?>
+                        <option value="<?= Encrypt($restaurant->id) ?>"><?= $restaurant->name ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 
@@ -28,7 +28,7 @@
             <div class="mb-3">
                 <input type="submit" class="btn-login" value="ENTRAR">
             </div>
-        </form>
+        <?= form_close() ?>
 
         <div class="text-center">
             <p>Não tem conta? <a href="#" class="login-link">Cadastre-se</a></p>
