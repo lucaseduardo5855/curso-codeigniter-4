@@ -15,6 +15,7 @@ class Auth extends BaseController
 
         //validation errors
         $data['validation_errors'] = session()->getFlashdata('validation_errors');
+        $data['select_restaurant'] = session()->getFlashdata('select_restaurant');
 
         return view('auth/login.frm.php', $data);
     }
@@ -50,6 +51,7 @@ class Auth extends BaseController
         ]);
 
         if (!$validation) {
+            session()->setFlashdata('select_restaurant', Decrypt($this->request->getPost('select_restaurant')));
             return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
         }
 

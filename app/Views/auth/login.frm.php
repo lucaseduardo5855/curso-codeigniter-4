@@ -12,7 +12,13 @@
                 <select name="select_restaurant" id="select_restaurant" class="form-select">
                     <option value=""></option>
                     <?php foreach ($restaurantes as $restaurant): ?>
-                        <option value="<?= Encrypt($restaurant->id) ?>"><?= $restaurant->name ?></option>
+                        <?php
+                        $selected = '';
+                        if (!empty($select_restaurant) && $select_restaurant == $select_restaurant->id) {
+                            $selected = 'selected';
+                        }
+                        ?>
+                        <option value="<?= Encrypt($restaurant->id) ?>" <?= $selected ?>><?= $restaurant->name ?></option>
                     <?php endforeach; ?>
                 </select>
                 <?= display_errors('select_restaurant', $validation_errors ?? []) ?>
