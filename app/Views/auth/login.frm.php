@@ -15,15 +15,18 @@
                         <option value="<?= Encrypt($restaurant->id) ?>"><?= $restaurant->name ?></option>
                     <?php endforeach; ?>
                 </select>
+                <?= display_errors('select_restaurant', $validation_errors ?? []) ?>
             </div>
 
             <hr>
 
             <div class="mb-3">
-                <input class="form-control" type="email" id="text-username" name="text-username" placeholder="Email">
+                <input class="form-control" type="text" id="text_username" name="text_username" placeholder="Usuário">
+                <?= display_errors('text_username', $validation_errors ?? []) ?>
             </div>
             <div class="mb-3">
-                <input class="form-control" type="password" id="text-password" name="text-password" placeholder="Senha">
+                <input class="form-control" type="password" id="text_password" name="text_password" placeholder="Senha">
+                <?= display_errors('text_password', $validation_errors ?? []) ?>
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn-login" value="ENTRAR">
