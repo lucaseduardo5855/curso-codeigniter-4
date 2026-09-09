@@ -14,7 +14,7 @@
                     <?php foreach ($restaurantes as $restaurant): ?>
                         <?php
                         $selected = '';
-                        if (!empty($select_restaurant) && $select_restaurant == $select_restaurant->id) {
+                        if (!empty($select_restaurant) && $select_restaurant == $restaurant->id) {
                             $selected = 'selected';
                         }
                         ?>
