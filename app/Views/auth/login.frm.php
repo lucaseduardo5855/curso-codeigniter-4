@@ -21,11 +21,11 @@
             <hr>
 
             <div class="mb-3">
-                <input class="form-control" type="text" id="text_username" name="text_username" placeholder="Usuário">
+                <input class="form-control" type="text" id="text_username" name="text_username" placeholder="Usuário" value="<?= old('text_username') ?>">
                 <?= display_errors('text_username', $validation_errors ?? []) ?>
             </div>
             <div class="mb-3">
-                <input class="form-control" type="password" id="text_password" name="text_password" placeholder="Senha">
+                <input class="form-control" type="password" id="text_password" name="text_password" placeholder="Senha" value="<?= old('text_password') ?>">
                 <?= display_errors('text_password', $validation_errors ?? []) ?>
             </div>
             <div class="mb-3">
