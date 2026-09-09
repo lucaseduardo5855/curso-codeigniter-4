@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\RestaurantModel;
+use App\Models\UserModel;
 
 class Auth extends BaseController
 {
@@ -16,6 +17,9 @@ class Auth extends BaseController
         //validation errors
         $data['validation_errors'] = session()->getFlashdata('validation_errors');
         $data['select_restaurant'] = session()->getFlashdata('select_restaurant');
+
+        //login errors
+        $data['login_error'] = session()->getFlashdata('login_error');
 
         return view('auth/login.frm.php', $data);
     }
@@ -55,11 +59,20 @@ class Auth extends BaseController
             return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
         }
 
-        echo 'Ok';
+        //check login
+        $username = $this->request->getPost('text_username');
+        $password = $this->request->getPost('text_password');
+        $id_restaurant = Decrypt($this->request->getPost('select_restaurant'));
 
-        //mostrar id restaurante
-        // $restaurante_id = Decrypt($this->request->getPost('select_restaurant'));
-        // echo($restaurante_id);
+        $user_model = new UserModel();
+        $user = $user_model->check_for_login($username, $password, $id_restaurant);
+
+        if (!$user) {
+            session()->setFlashdata('select_restaurant', Decrypt($this->request->getPost('select_restaurant')));
+            return redirect()->back()->withInput()->with('login_error', 'Usuário ou senha invalido');
+        }
+
+        dd($user);
     }
 
     public function logout()

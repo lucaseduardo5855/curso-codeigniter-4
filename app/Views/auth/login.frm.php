@@ -43,5 +43,11 @@
             <p>Não tem conta? <a href="#" class="login-link">Cadastre-se</a></p>
             <p><a href="#" class="login-link">Recuperar senha</a></p>
         </div>
+
+        <?php if (!empty($login_error)): ?>
+            <div class="alert alert-danger text-center p1">
+                <?= $login_error ?>
+            </div>
+        <?php endif; ?>
     </div>
 <?= $this->endSection() ?>
