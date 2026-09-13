@@ -72,8 +72,6 @@ class Auth extends BaseController
             return redirect()->back()->withInput()->with('login_error', 'Usuário ou senha invalido');
         }
 
-        dd($user);
-
         // set session
         $restaurant = new RestaurantModel();
         $restaurant_name = $restaurant->select('name')->find($user->id_restaurant)->name;
@@ -82,7 +80,7 @@ class Auth extends BaseController
             'id' => $user -> id,
             'name' => $user -> name,
             'id_restaurant' => $user -> id_restaurant,
-            'restaurant_name' => $user -> restaurant_name,
+            'restaurant_name' => $restaurant_name,
             'email' => $user -> email,
             'phone' => $user -> phone,
             'roles' => $user -> roles,
@@ -95,6 +93,7 @@ class Auth extends BaseController
 
     public function logout()
     {
-        echo 'logout';
+       session()->destroy();
+       return redirect()->to('/auth/login');
     }
 }
