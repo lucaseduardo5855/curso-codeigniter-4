@@ -32,13 +32,13 @@
   <?= $this->include('partials/top_bar.php') ?>  
 
   <!--main-->
-  <section class="d-flex">
+  <section class="main-layout d-flex">
 
       <!--main menu-->
       <?= $this->include('partials/main_menu.php') ?>
 
       <!--content-->
-      <div class="content p-4">
+      <div class="content p-4 flex-fill">
         <?= $this->renderSection('content') ?>
       </div>
 
