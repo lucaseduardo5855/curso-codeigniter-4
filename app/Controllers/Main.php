@@ -9,6 +9,6 @@ class Main extends BaseController
 {
     public function index()
     {
-        echo 'cigburguer Main';
+       return view('dashboard/home');
     }
 }
