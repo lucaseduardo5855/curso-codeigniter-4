@@ -53,7 +53,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
-
+$
 .btn-main-menu:hover {
   background: var(--color-white);
   color: var(--color-black);

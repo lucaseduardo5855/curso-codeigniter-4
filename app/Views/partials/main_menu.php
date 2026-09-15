@@ -4,7 +4,7 @@
     <a href="<?= site_url('/') ?>" class="nav-link">
       <i class="fas fa-home"></i> Início
     </a>
-    <a href="#" class="nav-link">
+    <a href="<?= site_url('/products') ?>" class="nav-link">
       <i class="fas fa-burger"></i> Produtos
     </a>
     <!-- <a href="#" class="nav-link">

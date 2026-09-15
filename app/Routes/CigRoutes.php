@@ -13,3 +13,7 @@ $routes->get('/', 'Main::index');
 $routes->get('auth/login', 'Auth::login');
 $routes->post('auth/login_submit', 'Auth::login_submit');
 $routes->get('auth/logout', 'Auth::logout');
+
+//Products
+$routes->get('/products', 'Products::index');
+$routes->get('/products/new', 'Products::new_Product');
