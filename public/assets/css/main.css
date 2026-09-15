@@ -53,8 +53,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
-$
-.btn-main-menu:hover {
+$ .btn-main-menu:hover {
   background: var(--color-white);
   color: var(--color-black);
 }
@@ -168,4 +167,9 @@ $
   .main-menu.show {
     transform: translateX(0);
   }
+}
+
+.product-image {
+  width: 200px;
+  height: 200px;
 }
