@@ -97,4 +97,22 @@
 
 </div>
 
+<script>
+  document.querySelector('#file_image').addEventListener('change', function() {
+    const product_image = document.querySelector('#product_image');
+    const file = this.files[0];
+    let reader = new FileReader();
+
+    reader.onloadend = function() {
+      product_image.src = reader.result;
+    }
+
+    if(file){
+      reader.readAsDataURL(file);
+    } else {
+      product_image.removeAttribute('src');
+    }
+  })
+</script>
+
 <?= $this->endSection() ?>
