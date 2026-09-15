@@ -7,11 +7,11 @@
     <a href="#" class="nav-link">
       <i class="fas fa-burger"></i> Produtos
     </a>
-    <a href="#" class="nav-link">
+    <!-- <a href="#" class="nav-link">
       <i class="fas fa-layer-group"></i> Stock Disponível
     </a>
     <a href="#" class="nav-link">
       <i class="fas fa-chart-column"></i> Dados Estatísticos
-    </a>
+    </a> -->
   </nav>
 </aside>
