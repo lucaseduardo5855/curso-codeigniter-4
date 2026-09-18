@@ -11,6 +11,9 @@
     <input type="file" name="file_upload" id="">
     <input type="submit" value="Enviar">
   <?= form_close() ?>
-  
+
+  <?php if (! empty($erro)): ?>
+    <p style="color: red"><?= esc($erro) ?></p>
+  <?php endif; ?>
 </body>
 </html>
