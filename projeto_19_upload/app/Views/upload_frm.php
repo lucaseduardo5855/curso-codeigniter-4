@@ -12,8 +12,10 @@
     <input type="submit" value="Enviar">
   <?= form_close() ?>
 
-  <?php if (! empty($erro)): ?>
-    <p style="color: red"><?= esc($erro) ?></p>
+  <?php if (! empty($validation_errors)): ?>
+    <?php foreach ($validation_errors as $error): ?>
+      <p style="color: red;"> <?= esc($error) ?> </p>
+    <?php endforeach; ?>
   <?php endif; ?>
 </body>
 </html>

@@ -6,20 +6,13 @@ class Home extends BaseController
 {
     public function index()
     {
-        $data['erro'] = session()->getFlashdata('erro');
+        $data['validation_errors'] = session()->getFlashdata('validation_errors');
 
-        return view ('upload_frm', $data);
+        return view('upload_frm', $data);
     }
 
-    public function upload_submit() 
+    public function upload_submit()
     {
-        $file = $this->request->getFile('file_upload');
-
-        if ($file === null || ! $file->isValid()) {
-            return redirect()->back()->withInput()->with('erro', 'ficheiro não carregado');
-        }
-
-        // form validation
         $validation = $this->validate([
             'file_upload' => [
                 'label' => 'ficheiro',
@@ -37,9 +30,28 @@ class Home extends BaseController
         ]);
 
         if (! $validation) {
-            return redirect()->back()->withInput()->with('erro', $this->validator->getError('file_upload'));
+            return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
         }
 
-        echo 'ficheiro carregado com sucesso';
+        // file upload
+        $file = $this->request->getFile('file_upload');
+
+        //mover para a pasta padrão
+        // $file->move(WRITEPATH . 'uploads');
+
+        //mover para pasta padrão com novo nome
+        // $file->move(WRITEPATH . 'uploads', 'novo_nome.jpg');
+
+        //mover para pasta padrão com nome aleatorio
+        // $file_name = $file->getRandomName();
+        // $file->move(WRITEPATH . 'uploads', $file->getRandomName());
+
+        //mover para pasta especifica
+        // $file->move(WRITEPATH . 'uploads/ficheiros');
+
+        //mover para pasta public
+        $file->move(ROOTPATH . 'public/assets/images', 'avatar.jpg');
     }
+
+
 }
