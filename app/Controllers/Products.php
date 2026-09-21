@@ -23,6 +23,9 @@ class Products extends BaseController
             'page' => 'Novo Produto',
         ];
 
+        // form validation
+        $data['validation_errors'] = session()->getFlashdata('validation_errors');
+
         return view('dashboard/products/new_product_frm', $data);
     }
 
@@ -109,11 +112,10 @@ class Products extends BaseController
         ]
     ]);
 
-    if (!$validation) {
-        dd($this->validator->getErrors());
-        return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
-    }
+        if (!$validation) {
+            return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
+        }
 
-    echo 'podemos avançar';
+        echo 'Podemos avançar';
     }
 }
