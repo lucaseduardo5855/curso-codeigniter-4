@@ -17,3 +17,4 @@ $routes->get('auth/logout', 'Auth::logout');
 //Products
 $routes->get('/products', 'Products::index');
 $routes->get('/products/new', 'Products::new_Product');
+$routes->post('/products_new_submit', 'Products::new_submit');
