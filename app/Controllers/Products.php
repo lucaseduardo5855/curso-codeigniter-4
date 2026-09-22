@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ProductModel;
 use Config\Validation;
 
 class Products extends BaseController
@@ -116,6 +117,38 @@ class Products extends BaseController
             return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
         }
 
-        echo 'Podemos avançar';
+        // check if product alreday exists
+        $product_model = new ProductModel();
+        $product = $product_model
+        ->where('name', $this->request->getPost('text_name'))
+        ->where('id_restaurant', session()->user['id_restaurant'])
+        ->first();
+        if ($product) {
+            return redirect()->back()->withInput()->with('validation_errors', ['text_name' => 'Já existe produto com este nome neste restaurante']);
+        }
+
+        // upload image
+        $file_image = $this->request->getFile('file_image');
+        $file_image->move(FCPATH . 'assets/images/products', $file_image->getName(), true);
+
+        // prepare data to insert
+        $data = [
+            'id_restaurant' => session()->user['id_restaurant'],
+            'name' => $this->request->getPost('text_name'),
+            'description' => $this->request->getPost('text_description'),
+            'category' => $this->request->getPost('text_category'),
+            'price' => $this->request->getPost('text_price'),
+            'promotion' => $this->request->getPost('text_promotion'),
+            'stock' => $this->request->getPost('text_initial_stock'),
+            'stock_min_length' => $this->request->getPost('text_stock_minimum_limit'),
+            'images' => $file_image->getName()
+        ];
+
+        // insert data
+        $product_model->insert($data);
+
+        //redirect
+        return redirect()->to('/products');
+
     }
 }
