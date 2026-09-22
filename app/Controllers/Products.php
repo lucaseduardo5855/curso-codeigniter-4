@@ -27,6 +27,14 @@ class Products extends BaseController
         // form validation
         $data['validation_errors'] = session()->getFlashdata('validation_errors');
 
+        // get distinct categories
+        $product_model = new ProductModel();
+        $data['categories'] = $product_model
+            ->select('category')
+            ->where('id_restaurant', session()->user['id_restaurant'])
+            ->distinct()
+            ->findAll();
+
         return view('dashboard/products/new_product_frm', $data);
     }
 
