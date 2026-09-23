@@ -48,7 +48,6 @@ class Products extends BaseController
     {
         // form validation
         $validation = $this->validate([
-
         // product image
     'file_image' => [
         'label' => 'imagem do produto',
@@ -171,8 +170,6 @@ class Products extends BaseController
         $id = Decrypt($enc_id);
         if (empty($id)) {
             return redirect()->to('/products');
-        } else {
-            echo $id;
         }
 
         $data = [
@@ -205,7 +202,70 @@ class Products extends BaseController
 
     public function edit_submit()
     {
-        echo 'editar produto';
+        // form validation
+        $validation = $this->validate([
+
+    // input fields
+    'text_name' => [
+        'label' => 'nome do produto',
+        'rules' => 'required|min_length[3]|max_length[100]',
+        'errors' => [
+            'required' => 'O campo {field} é obrigatório',
+            'min_length' => 'O campo {field} deve ter no mínimo 3 caracteres',
+            'max_length' => 'O campo {field} deve ter no máximo 100 caracteres'
+        ]
+    ],
+    'text_description' => [
+        'label' => 'descrição do produto',
+        'rules' => 'required|min_length[3]|max_length[200]',
+        'errors' => [
+            'required' => 'O campo {field} é obrigatório',
+            'min_length' => 'O campo {field} deve ter no mínimo 3 caracteres',
+            'max_length' => 'O campo {field} deve ter no máximo 200 caracteres'
+        ]
+    ],
+    'text_category' => [
+        'label' => 'categoria do produto',
+        'rules' => 'required|min_length[3]|max_length[50]',
+        'errors' => [
+            'required' => 'O campo {field} é obrigatório',
+            'min_length' => 'O campo {field} deve ter no mínimo 3 caracteres',
+            'max_length' => 'O campo {field} deve ter no máximo 50 caracteres'
+        ]
+    ],
+    'text_price' => [
+        'label' => 'preço do produto',
+        'rules' => 'required|regex_match[/^\d+\,\d{2}$/]',
+        'errors' => [
+            'required' => 'O campo {field} é obrigatório',
+            'regex_match' => 'O campo {field} deve ser um número com o formato x,xx',
+        ]
+    ],
+    'text_promotion' => [
+        'label' => 'promoção do produto',
+        'rules' => 'required|greater_than[-1]|less_than[100]',
+        'errors' => [
+            'required' => 'O campo {field} é obrigatório',
+            'greater_than' => 'O campo {field} deve ser um número maior que {param}',
+            'less_than' => 'O campo {field} deve ser um número menor que {param}',
+        ]
+    ],
+    'text_stock_minimum_limit' => [
+        'label' => 'limite mínimo de estoque do produto',
+        'rules' => 'required|greater_than[99]',
+        'errors' => [
+            'required' => 'O campo {field} é obrigatório',
+            'greater_than' => 'O campo {field} deve ser um número maior que {param}',
+            ]
+        ]
+    ]);
+
+        if (!$validation) {
+            return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
+        }
+
+        echo 'OK';
+
     }
 
 }
