@@ -165,4 +165,20 @@ class Products extends BaseController
         return redirect()->to('/products');
 
     }
+
+    public function edit($end_id)
+    {
+        $id = Decrypt($end_id);
+        if (empty($id)) {
+            return redirect()->to('/products');
+        } else {
+            echo $id;
+        }
+    }
+
+    public function edit_submit()
+    {
+        echo 'editar produto';
+    }
+
 }

@@ -17,7 +17,7 @@
     <div class="container-fluid mb-5">
       <div class="row">
         <?php foreach ($products as $product) : [] ?>
-          <?= view('partials/product', ['product' => $product]) ?>
+         <?= view('partials/product', ['product' => $product]) ?>
         <?php endforeach; ?>
       </div>
     </div>
