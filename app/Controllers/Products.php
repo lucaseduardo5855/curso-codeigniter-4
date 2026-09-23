@@ -260,11 +260,16 @@ class Products extends BaseController
         ]
     ]);
 
+        //check if id is ok
+        $id = Decrypt($this->request->getPost('id_product'));
+        if (empty($id)) {
+            return redirect()->to('/products');
+        }
+
         if (!$validation) {
             return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
         }
 
-        echo 'OK';
 
     }
 

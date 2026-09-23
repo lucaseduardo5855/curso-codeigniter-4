@@ -20,3 +20,9 @@ function calculate_promotion($value, $discount)
     // round to 2 decimal placees
     return round($value - ($value * $discount) / 100, 2);
 }
+
+function normalize_price($price)
+{
+    // return value with comma and 2 decimal places
+    return number_format($price, 2, ',', '.');
+}
