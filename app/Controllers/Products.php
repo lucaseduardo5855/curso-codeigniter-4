@@ -14,6 +14,12 @@ class Products extends BaseController
             'page' => 'Produtos',
         ];
 
+        // get products
+        $product_model = new ProductModel();
+        $data['products'] = $product_model
+        ->where('id_restaurant', session()->user['id_restaurant'])
+        ->findAll();
+
         return view('dashboard/products/index', $data);
     }
 
