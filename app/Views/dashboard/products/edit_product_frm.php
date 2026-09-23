@@ -3,9 +3,9 @@
 <?= $this->include('partials/page_title') ?>
 
 <div class="content-box">
-    <?= form_open_multipart('/edit_submit', ['novalidate' => true]) ?>
+    <?= form_open_multipart('/products/edit_submit', ['novalidate' => true]) ?>
 
-    <input type="hidden" name="id_product" value="">
+    <input type="hidden" name="id_product" value="<?= Encrypt($product->id) ?>">
 
     <div class="row">
 
@@ -13,7 +13,7 @@
 
             <!-- image -->
             <div class="text-center">
-                <img class="product-image img-fluid" id="product_image">
+                <img src="<?= base_url('/assets/images/products/' . $product->image) ?>" class="product-image img-fluid" id="product_image">
             </div>
 
             <!-- file upload -->
@@ -30,14 +30,14 @@
             <!-- name -->
             <div class="mb-3">
                 <label for="name" class="form-label">Nome do produto</label>
-                <input type="text" name="text_name" id="text_name" class="form-control" placeholder="Nome do produto" value="<?= old('text_name') ?>">
+                <input type="text" name="text_name" id="text_name" class="form-control" placeholder="Nome do produto" value="<?= old('text_name', $product->name) ?>">
                 <?= display_errors('text_name', $validation_errors ?? []) ?>
             </div>
 
             <!-- description -->
             <div class="mb-3">
                 <label for="description" class="form-label">Descrição do produto</label>
-                <input type="text" name="text_description" id="text_description" class="form-control" placeholder="Descrição do produto" value="<?= old('text_description') ?>">
+                <input type="text" name="text_description" id="text_description" class="form-control" placeholder="Descrição do produto" value="<?= old('text_description', $product->description) ?>">
                 <?= display_errors('text_description', $validation_errors ?? []) ?>
             </div>
 
@@ -46,7 +46,7 @@
                 <div class="col-lg-6 col-12">
                     <div class="mb-3">
                         <label for="text_category" class="form-label">Categoria</label>
-                        <input list="list_categories" name="text_category" id="text_category" class="form-control" placeholder="Categoria" value="<?= old('text_category') ?>">
+                        <input list="list_categories" name="text_category" id="text_category" class="form-control" placeholder="Categoria" value="<?= old('text_category', $product->category) ?>">
                         <?= display_errors('text_category', $validation_errors ?? []) ?>
                         <datalist id="list_categories">
                             <?php foreach ($categories ?? [] as $category) { ?>
@@ -58,7 +58,7 @@
                 <div class="col-lg-6 col-12">
                     <div class="mb-3">
                         <label for="price" class="form-label">Preço</label>
-                        <input type="text" name="text_price" id="text_price" class="form-control" placeholder="Preço" value="<?= old('text_price') ?>">
+                        <input type="text" name="text_price" id="text_price" class="form-control" placeholder="Preço" value="<?= old('text_price', $product->price) ?>">
                         <?= display_errors('text_price', $validation_errors ?? []) ?>
                     </div>
                 </div>
@@ -67,14 +67,12 @@
             <!-- available and promotion -->
             <div class="row">
                 <div class="col-lg-6 col-12 align-self-center mb-3">
-                    <input type="checkbox" name="check_available" id="check_available" checked>
-                    <label for="check_available" class="form-label">Produto disponível.</label value
-                    <?= old('check_available') ?>>
-                      <?= display_errors('check_available', $validation_errors ?? []) ?>
+                    <input type="checkbox" name="check_available" id="check_available" <?= $product->availability ? 'checked' : '' ?>>
+                    <label for="check_available" class="form-label">Produto disponível.</label>
                 </div>
                 <div class="col-lg-6 col-12 mb-3">
                     <label for="promotion" class="form-label">Promoção</label>
-                    <input type="text" name="text_promotion" id="text_promotion" class="form-control" placeholder="Promoção" value="<?= old('text_promotion') ?>">
+                    <input type="text" name="text_promotion" id="text_promotion" class="form-control" placeholder="Promoção" value="<?= old('text_promotion', $product->promotion) ?>">
                     <?= display_errors('text_promotion', $validation_errors ?? []) ?>
                 </div>
             </div>
@@ -83,11 +81,9 @@
             <div class="row">
                 <div class="col-lg-6 col-12 mb-3">
                     <label for="stock_minimum_limit" class="form-label">Limite mínimo de estoque</label>
-                    <input type="text" name="text_stock_minimum_limit" id="text_stock_minimum_limit" class="form-control" placeholder="Limite mínimo de estoque" value="<?= old('text_stock_minimum_limit') ?>">
+                    <input type="text" name="text_stock_minimum_limit" id="text_stock_minimum_limit" class="form-control" placeholder="Limite mínimo de estoque" value="<?= old('text_stock_minimum_limit', $product->stock_min_limit) ?>">
                     <?= display_errors('text_stock_minimum_limit', $validation_errors ?? []) ?>
                 </div>
-
-
         </div>
 
         <!-- submit -->

@@ -166,14 +166,41 @@ class Products extends BaseController
 
     }
 
-    public function edit($end_id)
+    public function edit($enc_id)
     {
-        $id = Decrypt($end_id);
+        $id = Decrypt($enc_id);
         if (empty($id)) {
             return redirect()->to('/products');
         } else {
             echo $id;
         }
+
+        $data = [
+            'title' => 'Produtos',
+            'page' => 'Editar Produto'
+        ];
+
+        // form validation
+        $data['validation_errors'] = session()->getFlashdata('validation_errors');
+
+        // get product
+        $product_model = new ProductModel();
+        $data['product'] = $product_model->find($id);
+
+        // get distinct categories
+        $product_model = new ProductModel();
+        $data['categories'] = $product_model
+            ->select('category')
+            ->where('id_restaurant', session()->user['id_restaurant'])
+            ->distinct()
+            ->findAll();
+
+        // check if the product image exists
+        if (!file_exists('./assets/images/products/' . $data['product']->image)) {
+            $data['product']->image = 'no_image.png';
+        }
+
+        return view('dashboard/products/edit_product_frm', $data);
     }
 
     public function edit_submit()
