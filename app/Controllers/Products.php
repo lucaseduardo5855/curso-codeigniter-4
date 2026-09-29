@@ -180,6 +180,9 @@ class Products extends BaseController
         // form validation
         $data['validation_errors'] = session()->getFlashdata('validation_errors');
 
+        //server error
+        $data['server_error'] = session()->getFlashdata('server_error');
+
         // get product
         $product_model = new ProductModel();
         $data['product'] = $product_model->find($id);
@@ -193,7 +196,7 @@ class Products extends BaseController
             ->findAll();
 
         // check if the product image exists
-        if (!file_exists('./assets/images/products/' . $data['product']->image)) {
+        if (!file_exists(FCPATH . 'assets/images/products/' . $data['product']->image)) {
             $data['product']->image = 'no_image.png';
         }
 
@@ -270,7 +273,44 @@ class Products extends BaseController
             return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
         }
 
+        //check if the product already exists
+        $product_model = new ProductModel();
+        $product = $product_model
+            ->where('name', $this->request->getPost('text_name'))
+            ->where('id_restaurant', session()->user['id_restaurant'])
+            ->where('id !=', $id)
+            ->first();
+        if ($product) {
+            return redirect()->back()->withInput()->with('server_error', 'Já existe outro produto com mesmo nome');
+        }
 
+        //prepare data to update product
+        $data = [
+            'name' => $this->request->getPost('text_name'),
+            'description' => $this->request->getPost('text_description'),
+            'category' => $this->request->getPost('text_category'),
+            'price' => $this->request->getPost('text_price'),
+            'availability' => $this->request->getPost('check_available') ? 1 : 0, //checkbox
+            'promotion' => $this->request->getPost('text_promotion'),
+            'stock_min_limit' => $this->request->getPost('text_stock_minimum_limit')
+        ];
+
+        //check if the product image was changed
+        $file_image = $this->request->getFile('file_image');
+        if ($file_image->isValid() && !$file_image->hasMoved()) {
+            //upload image
+            $new_image_name = $file_image->getRandomName();
+            $file_image->move(FCPATH . 'assets/images/products', $new_image_name);
+
+            //update image
+            $data['image'] = $new_image_name;
+        }
+
+        // update product
+        $product_model->update($id, $data);
+
+        //redirect
+        return redirect()->to('/products');
     }
 
 }
