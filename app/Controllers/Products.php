@@ -130,6 +130,13 @@ class Products extends BaseController
             return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
         }
 
+        //validate if the image file is not equal to 'no_image.png'
+        if ($this->request->getFile('file_image')->getName() === 'no_image.png') {
+            return redirect()->back()->withInput()->with('validation_errors', [
+                'file_image' => 'O campo imagem do produto é obrigatório',
+            ]);
+        }
+
         // check if product alreday exists
         $product_model = new ProductModel();
         $product = $product_model
@@ -298,12 +305,13 @@ class Products extends BaseController
         //check if the product image was changed
         $file_image = $this->request->getFile('file_image');
         if ($file_image->isValid() && !$file_image->hasMoved()) {
+            $image_name = $file_image->getName();
+
             //upload image
-            $new_image_name = $file_image->getRandomName();
-            $file_image->move(FCPATH . 'assets/images/products', $new_image_name);
+            $file_image->move(FCPATH . 'assets/images/products', $image_name, true);
 
             //update image
-            $data['image'] = $new_image_name;
+            $data['image'] = $image_name;
         }
 
         // update product
