@@ -149,7 +149,8 @@ class Products extends BaseController
 
         // upload image
         $file_image = $this->request->getFile('file_image');
-        $file_image->move(FCPATH . 'assets/images/products', $file_image->getName(), true);
+        $final_file_name = prefixed_product_file_name($file_image->getName());
+        $file_image->move(FCPATH . 'assets/images/products', $final_file_name, true);
 
         // prepare data to insert
         $data = [
@@ -160,8 +161,8 @@ class Products extends BaseController
             'price' => $this->request->getPost('text_price'),
             'promotion' => $this->request->getPost('text_promotion'),
             'stock' => $this->request->getPost('text_initial_stock'),
-            'stock_min_length' => $this->request->getPost('text_stock_minimum_limit'),
-            'images' => $file_image->getName()
+            'stock_min_limit' => $this->request->getPost('text_stock_minimum_limit'),
+            'image' => $final_file_name
         ];
 
         // insert data
@@ -280,6 +281,11 @@ class Products extends BaseController
             return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
         }
 
+        // validate if the image file is not equal to 'no_image.png'
+        if ($this->request->getFile('file_image')->getName() == 'no_image.png') {
+            return redirect()->back()->withInput()->with('validation_errors', ['file_image' => 'O campo imagem do produto não pode ser o mesmo']);
+        }
+
         //check if the product already exists
         $product_model = new ProductModel();
         $product = $product_model
@@ -305,13 +311,16 @@ class Products extends BaseController
         //check if the product image was changed
         $file_image = $this->request->getFile('file_image');
         if ($file_image->isValid() && !$file_image->hasMoved()) {
-            $image_name = $file_image->getName();
+            $image_name = prefixed_product_file_name($file_image->getName());
+
+            //prefix image name
+            $final_file_name = prefixed_product_file_name($file_image->getName());
 
             //upload image
-            $file_image->move(FCPATH . 'assets/images/products', $image_name, true);
+            $file_image->move(FCPATH . 'assets/images/products', $final_file_name, true);
 
             //update image
-            $data['image'] = $image_name;
+            $data['image'] = $final_file_name;
         }
 
         // update product
