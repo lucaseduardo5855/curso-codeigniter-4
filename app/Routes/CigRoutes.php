@@ -28,4 +28,5 @@ $routes->get('/products/delete/(:alphanum)', 'Products::delete/$1');
 $routes->get('/products/delete_confirm/(:alphanum)', 'Products::delete_confirm/$1');
 
 //Products Stock
+$routes->get('/stocks', 'Stocks::index');
 $routes->get('/products/stock/(:alphanum)', 'Products::stock/$1');
