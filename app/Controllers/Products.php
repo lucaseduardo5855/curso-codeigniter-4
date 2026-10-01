@@ -23,6 +23,10 @@ class Products extends BaseController
         return view('dashboard/products/index', $data);
     }
 
+    //---------------------------------------
+    //new product
+    //---------------------------------------
+
     public function new_Product()
     {
         $data = [
@@ -172,6 +176,10 @@ class Products extends BaseController
         return redirect()->to('/products');
 
     }
+
+    //---------------------------------------
+    //edit product
+    //---------------------------------------
 
     public function edit($enc_id)
     {
@@ -325,6 +333,52 @@ class Products extends BaseController
 
         // update product
         $product_model->update($id, $data);
+
+        //redirect
+        return redirect()->to('/products');
+    }
+
+    //---------------------------------------
+    //delete product
+    //---------------------------------------
+
+    public function delete($enc_id)
+    {
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/products');
+        }
+        //check if product exist
+        $product_model = new ProductModel();
+        $product = $product_model->find($id);
+        if (!$product) {
+            return redirect()->to('/products');
+        }
+        //show delete confirmation
+        $data = [
+             'title' => 'Produtos',
+             'page' => 'Eliminar produto',
+             'product' => $product
+        ];
+
+        return view('dashboard/products/delete_product', $data);
+    }
+
+    public function delete_confirm($enc_id)
+    {
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/products');
+        }
+        //check if products exists
+        $product_model = new ProductModel();
+        $product = $product_model->find($id);
+        if (!$product) {
+            return redirect()->to('/products');
+        }
+
+        //delete product
+        $product_model->delete($id);
 
         //redirect
         return redirect()->to('/products');
