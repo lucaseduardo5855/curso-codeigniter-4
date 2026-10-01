@@ -20,6 +20,8 @@ class Products extends BaseController
         ->where('id_restaurant', session()->user['id_restaurant'])
         ->findAll();
 
+        print_data($data['products'], false);
+
         return view('dashboard/products/index', $data);
     }
 

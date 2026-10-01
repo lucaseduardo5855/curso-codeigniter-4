@@ -33,3 +33,15 @@ function prefixed_product_file_name($file_name)
     $prefix = 'rest_' . str_pad(session()->user['id_restaurant'], 5, '0', STR_PAD_LEFT);
     return $prefix . '_' . $file_name;
 }
+
+function print_data($data, $die = true)
+{
+    echo '<prev>';
+    echo str_repeat('-', 40) . '<br>';
+    echo print_r($data, true);
+    echo '<br>';
+    echo str_repeat('-', 40) . '<br>';
+    if ($die) {
+        die(1);
+    }
+}
