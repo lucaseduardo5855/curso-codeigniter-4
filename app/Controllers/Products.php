@@ -158,7 +158,7 @@ class Products extends BaseController
             'name' => $this->request->getPost('text_name'),
             'description' => $this->request->getPost('text_description'),
             'category' => $this->request->getPost('text_category'),
-            'price' => $this->request->getPost('text_price'),
+            'price' => (float) str_replace(',', '.', trim($this->request->getPost('text_price'))),
             'promotion' => $this->request->getPost('text_promotion'),
             'stock' => $this->request->getPost('text_initial_stock'),
             'stock_min_limit' => $this->request->getPost('text_stock_minimum_limit'),
@@ -302,7 +302,7 @@ class Products extends BaseController
             'name' => $this->request->getPost('text_name'),
             'description' => $this->request->getPost('text_description'),
             'category' => $this->request->getPost('text_category'),
-            'price' => $this->request->getPost('text_price'),
+            'price' => (float) str_replace(',', '.', trim($this->request->getPost('text_price'))),
             'availability' => $this->request->getPost('check_available') ? 1 : 0, //checkbox
             'promotion' => $this->request->getPost('text_promotion'),
             'stock_min_limit' => $this->request->getPost('text_stock_minimum_limit')
