@@ -8,7 +8,7 @@
       <i class="fas fa-burger"></i> Produtos
     </a>
     <a href="<?= site_url('/stocks') ?>" class="nav-link">
-      <i class="fas fa-layer-group"></i> Stock Disponível
+      <i class="fas fa-layer-group"></i> Stocks
     </a>
     <!-- <a href="#" class="nav-link">
       <i class="fas fa-chart-column"></i> Dados Estatísticos

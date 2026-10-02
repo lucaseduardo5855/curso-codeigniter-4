@@ -13,7 +13,8 @@
 
             <!-- image -->
             <div class="text-center">
-                <img src="<?= base_url('/assets/images/products/' . $product->image) ?>" class="product-image img-fluid" id="product_image">
+                <?php $currentImage = file_exists(FCPATH . 'assets/images/products/' . $product->image) ? base_url('/assets/images/products/' . $product->image) : base_url('/assets/images/products/no_image.png'); ?>
+                <img src="<?= $currentImage ?>" class="product-image img-fluid" id="product_image">
             </div>
 
             <!-- file upload -->
@@ -122,7 +123,7 @@
     if(file){
       reader.readAsDataURL(file);
     } else {
-      product_image.removeAttribute('src');
+      product_image.src = '<?= base_url('/assets/images/products/no_image.png') ?>';
     }
   })
 </script>

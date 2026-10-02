@@ -11,7 +11,7 @@
 
             <!-- image -->
             <div class="text-center">
-                <img src="<?= base_url('/assets/images/products/no_image') ?>" class="product-image img-fluid" id="product_image">
+                <img src="<?= base_url('/assets/images/products/no_image.png') ?>" class="product-image img-fluid" id="product_image">
             </div>
 
             <!-- file upload -->
@@ -121,7 +121,7 @@
     if(file){
       reader.readAsDataURL(file);
     } else {
-      product_image.removeAttribute('src');
+      product_image.src = '<?= base_url('/assets/images/products/no_image.png') ?>';
     }
   })
 </script>
