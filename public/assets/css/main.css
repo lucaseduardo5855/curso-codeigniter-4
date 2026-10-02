@@ -177,3 +177,9 @@ $ .btn-main-menu:hover {
 .overflow-hidden {
   overflow: hidden;
 }
+
+/* Stock */
+.stock-image {
+  max-width: 100px;
+  max-height: 100px;
+}
