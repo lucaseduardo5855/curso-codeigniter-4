@@ -23,5 +23,6 @@
     </section>
 
     <?= $this->include('partials/footer.php') ?>
+    <script src="<?= base_url('assets/libs/bootstrap/bootstrap.bundle.min.js') ?>"></script>
 </body>
 </html>

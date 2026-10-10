@@ -37,7 +37,8 @@ Open `/auth/login` to sign in. Configure the database settings in `.env`
 `php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"`.
 
 After a successful login, the `master` branch opens the AAA/BBB dashboard.
-Product and stock management remain in branch `008`.
+The dashboard links to product management and the stock overview. Branch `008`
+remains separate and continues its own development history.
 
 Create the login tables and demo records with:
 
@@ -45,9 +46,11 @@ Create the login tables and demo records with:
 php spark migrate
 php spark db:seed RestaurantsSeeder
 php spark db:seed UsersSeeder
+php spark db:seed ProductsSeeder
 ```
 
-Run the seeders once, in this order, because demo users reference restaurants.
+Run each seeder once, in this order, because demo users and products reference
+the seeded restaurants.
 
 ## Important Change with index.php
 

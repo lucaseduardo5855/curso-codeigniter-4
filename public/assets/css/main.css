@@ -28,6 +28,27 @@ body {
     text-decoration: none;
 }
 
+.top-bar .top-bar-menu {
+    margin-left: 4px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.top-bar .top-bar-menu:hover,
+.top-bar .top-bar-menu:focus {
+    color: #ffae00;
+}
+
+.main-menu .nav-link {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-menu .nav-link:hover {
+    background: var(--top-bar-bg-color);
+}
+
 .main-layout {
     height: calc(100vh - 86px);
 }
@@ -62,6 +83,108 @@ body {
     border-radius: 5px;
     background: #fff;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.content-title {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--top-bar-bg-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.stock-image {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.btn-cig {
+    padding: 5px 30px;
+    border: 1px solid var(--top-bar-bg-color);
+    border-radius: 5px;
+    background: var(--top-bar-bg-color);
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-cig:hover {
+    background: var(--menu-bg-color);
+    color: #fff;
+}
+
+.btn-cig-outline {
+    padding: 5px 30px;
+    border: 1px solid var(--top-bar-bg-color);
+    border-radius: 5px;
+    color: #000;
+    text-decoration: none;
+}
+
+.btn-cig-outline:hover {
+    background: var(--top-bar-bg-color);
+    color: #fff;
+}
+
+.content-title {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--top-bar-bg-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.stock-image {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.btn-cig {
+    padding: 5px 30px;
+    border: 1px solid var(--top-bar-bg-color);
+    border-radius: 5px;
+    background: var(--top-bar-bg-color);
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-cig:hover {
+    background: var(--menu-bg-color);
+    color: #fff;
+}
+
+.btn-cig-outline {
+    padding: 5px 30px;
+    border: 1px solid var(--top-bar-bg-color);
+    border-radius: 5px;
+    color: #000;
+    text-decoration: none;
+}
+
+.btn-cig-outline:hover {
+    background: var(--top-bar-bg-color);
+    color: #fff;
 }
 
 .footer {
