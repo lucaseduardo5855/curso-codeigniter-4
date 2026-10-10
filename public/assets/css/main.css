@@ -1,0 +1,89 @@
+:root {
+    --top-bar-bg-color: #880000;
+    --menu-bg-color: #330000;
+    --menu-group-color: #ffae00;
+    --content-bg-color: #ddd;
+    --footer-bg-color: #000;
+    --footer-fg-color: #bbb;
+}
+
+* {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.top-bar {
+    height: 52px;
+    padding: 4px 10px;
+    background: var(--top-bar-bg-color);
+    color: #fff;
+}
+
+.top-bar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-layout {
+    height: calc(100vh - 86px);
+}
+
+.main-menu {
+    flex: 0 0 195px;
+    padding: 10px 14px;
+    background: var(--menu-bg-color);
+    color: #fff;
+}
+
+.menu-group {
+    margin: 12px 0;
+    color: var(--menu-group-color);
+    font-weight: 700;
+}
+
+.main-menu a {
+    padding: 5px 0;
+    color: #fff;
+    text-decoration: none;
+}
+
+.content {
+    overflow: auto;
+    background: var(--content-bg-color);
+}
+
+.content-box {
+    margin: 5px 0;
+    padding: 16px;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.footer {
+    display: flex;
+    height: 34px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background: var(--footer-bg-color);
+    color: var(--footer-fg-color);
+}
+
+@media (max-width: 576px) {
+    body {
+        overflow: auto;
+    }
+
+    .main-layout {
+        height: calc(100vh - 86px);
+    }
+
+    .main-menu {
+        flex-basis: 150px;
+    }
+}

@@ -36,6 +36,9 @@ Open `/auth/login` to sign in. Configure the database settings in `.env`
 `encryption.key` to a private key generated with
 `php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"`.
 
+After a successful login, the `master` branch opens the AAA/BBB dashboard.
+Product and stock management remain in branch `008`.
+
 Create the login tables and demo records with:
 
 ```shell
