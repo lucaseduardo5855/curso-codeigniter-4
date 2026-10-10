@@ -28,6 +28,24 @@ to your `app` folder. The affected files can be copied or merged from
 Copy `env` to `.env` and tailor for your app, specifically the baseURL
 and any database settings.
 
+## CigBurguer login
+
+Open `/auth/login` to sign in. Configure the database settings in `.env`
+(`database.default.hostname`, `database.default.database`,
+`database.default.username`, and `database.default.password`) and set
+`encryption.key` to a private key generated with
+`php -r "echo bin2hex(random_bytes(32)), PHP_EOL;"`.
+
+Create the login tables and demo records with:
+
+```shell
+php spark migrate
+php spark db:seed RestaurantsSeeder
+php spark db:seed UsersSeeder
+```
+
+Run the seeders once, in this order, because demo users reference restaurants.
+
 ## Important Change with index.php
 
 `index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
