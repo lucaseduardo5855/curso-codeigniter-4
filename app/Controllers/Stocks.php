@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\ProductModel;
 
 class Stocks extends BaseController
@@ -20,5 +21,30 @@ class Stocks extends BaseController
         ];
 
         return view('dashboard/stocks/index', $data);
+    }
+
+    public function add($enc_id)
+    {
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/stocks');
+        }
+
+        //load product
+        $products_model = new ProductModel();
+        $product = $products_model->where('id', $id)->first();
+
+        $data = [
+            'title' => 'Stock',
+            'page' => 'Adicionar Stock',
+            'product' => $product
+        ];
+
+        return view('dashboard/stocks/add_frm', $data);
+    }
+
+    public function add_submit()
+    {
+        echo 'add_submit cheghamos';
     }
 }
