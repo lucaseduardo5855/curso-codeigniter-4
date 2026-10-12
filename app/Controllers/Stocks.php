@@ -38,12 +38,13 @@ class Stocks extends BaseController
         // get distinct suppliers within stocks table that belongs to this restaurants
         $stocks_model = new StockModel();
         $stocks_suppliers = $stocks_model->get_stock_suppliers(session()->user['id_restaurant']);
-        dd($stocks_suppliers);
+
 
         $data = [
             'title' => 'Stock',
             'page' => 'Adicionar Stock',
-            'product' => $product
+            'product' => $product,
+            'stock_suppliers' => $stocks_suppliers
         ];
 
         return view('dashboard/stocks/add_frm', $data);

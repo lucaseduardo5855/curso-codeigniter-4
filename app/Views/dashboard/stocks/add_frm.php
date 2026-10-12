@@ -53,7 +53,11 @@
                 <label for="text_supplier" class="form-label">Fornecedor</label>
                 <input type="text" list="list_suppliers" name="text_supplier" id="text_supplier" class="form-control">
                 <datalist id="list_suppliers">
-                  <option value=""></option>
+                  <option value="">
+                    <?php foreach ($stock_suppliers as $supplier): ?>
+                      <option value="<?= $supplier->stock_supplier ?>"></option>
+                    <?php endforeach; ?>
+                  </option>
                 </datalist>
             </div>
           </div>
