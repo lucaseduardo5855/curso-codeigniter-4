@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ProductModel;
+use App\Models\StockModel;
 
 class Stocks extends BaseController
 {
@@ -33,6 +34,11 @@ class Stocks extends BaseController
         //load product
         $products_model = new ProductModel();
         $product = $products_model->where('id', $id)->first();
+
+        // get distinct suppliers within stocks table that belongs to this restaurants
+        $stocks_model = new StockModel();
+        $stocks_suppliers = $stocks_model->get_stock_suppliers(session()->user['id_restaurant']);
+        dd($stocks_suppliers);
 
         $data = [
             'title' => 'Stock',
