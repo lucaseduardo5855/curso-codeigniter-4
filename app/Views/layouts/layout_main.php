@@ -10,6 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/libs/bootstrap/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/libs/fontawesome/all.min.css') ?>">
+
+    <!--Flatpickr-->
+    <link rel="stylesheet" href="<?= base_url('/assets/libs/flatpickr/flatpickr.min.css') ?>">
+
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>">
 </head>
 <body>
@@ -24,5 +28,9 @@
 
     <?= $this->include('partials/footer.php') ?>
     <script src="<?= base_url('assets/libs/bootstrap/bootstrap.bundle.min.js') ?>"></script>
+
+    <!--Flatpickr-->
+    <script src="<?= base_url('/assets/libs/flatpickr/flatpickr.min.js') ?>"></script>
+
 </body>
 </html>

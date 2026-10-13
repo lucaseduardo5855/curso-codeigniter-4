@@ -88,5 +88,14 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    flatpickr('#text_date', {
+      date_Format: 'Y-m-d',
+      maxDate: 'today'
+    })
+  })
+</script>
+
 
 <?= $this->endSection() ?>
