@@ -44,7 +44,9 @@ class Stocks extends BaseController
             'title' => 'Stock',
             'page' => 'Adicionar Stock',
             'product' => $product,
-            'stock_suppliers' => $stocks_suppliers
+            'stock_suppliers' => $stocks_suppliers,
+            'validation_errors' => session()->getFlashdata('validation_errors'),
+            'server_error' => session()->getFlashdata('server_error')
         ];
 
         return view('dashboard/stocks/add_frm', $data);
@@ -52,6 +54,60 @@ class Stocks extends BaseController
 
     public function add_submit()
     {
-        echo 'add_submit cheghamos';
+        // form validation
+        $validation = $this->validate($this->_stock_add_form_validation());
+
+        if (!$validation) {
+            return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
+        }
+
+        // check if id_product is valid
+        $id_product = Decrypt($this->request->getPost('id_product'));
+
+        if (empty($id_product)) {
+            return redirect()->back()->withInput()->with('server_error', 'Ocorreu um erro tente novamente');
+        }
+
+        // get post data
+        $text_stock = $this->request->getPost('text_stock');
+        $text_supplier = $this->request->getPost('text_supplier');
+        $text_reason = $this->request->getPost('text_reason');
+        $text_date = $this->request->getPost('text_date');
+        dd('ok');
+    }
+
+    private function _stock_add_form_validation()
+    {
+        // stock form validation rules
+        return [
+            'id_product' => [
+                'rules' => 'required'
+            ],
+            'text_stock' => [
+                'label' => 'Quantidade',
+                'rules' => 'required|numeric|greater_than[0]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                    'numeric' => 'O campo {field} deve conter apenas números.',
+                    'greater_than' => 'O campo {field} deve conter um valor maior que {param}.',
+                ],
+            ],
+            'text_supplier' => [
+                'label' => 'Fornecedor',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                ],
+            ],
+            // text_reason not required
+            'text_date' => [
+                'label' => 'Data do movimento',
+                'rules' => 'required|valid_date[Y-m-d]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                    'valid_date' => 'O campo {field} deve conter data válida (Y-m-d).',
+                ],
+            ],
+        ];
     }
 }
