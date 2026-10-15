@@ -93,6 +93,33 @@ class Stocks extends BaseController
         return redirect()->to('/stocks');
     }
 
+    public function add_remove($enc_id)
+    {
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/stocks');
+        }
+
+        //load product
+        $products_model = new ProductModel();
+        $product = $products_model->where('id', $id)->first();
+
+        $data = [
+            'title' => 'Stock',
+            'page' => 'Remover Stock',
+            'product' => $product,
+            'validation_errors' => session()->getFlashdata('validation_errors'),
+            'server_error' => session()->getFlashdata('server_error')
+        ];
+
+        return view('dashboard/stocks/remove_frm', $data);
+    }
+
+    public function remove_submit()
+    {
+        echo 'remove submit';
+    }
+
     private function _stock_add_form_validation()
     {
         // stock form validation rules
