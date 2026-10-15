@@ -73,7 +73,24 @@ class Stocks extends BaseController
         $text_supplier = $this->request->getPost('text_supplier');
         $text_reason = $this->request->getPost('text_reason');
         $text_date = $this->request->getPost('text_date');
-        dd('ok');
+
+        // store stock movement
+        $stocks_model = new StockModel();
+        $stocks_model->insert([
+            'id_product' => $id_product,
+            'stock_quantity' => intval($text_stock),
+            'stock_supplier' => $text_supplier,
+            'reason' => $text_reason,
+            'stock_in_out' => 'IN',
+            'created_at' => $text_date
+        ]);
+
+        //increment product stock
+        $products_model = new ProductModel();
+        $products_model->where('id', $id_product)
+                       ->set('stock', 'stock+' . intval($text_stock), false)
+                       ->update();
+        return redirect()->to('/stocks');
     }
 
     private function _stock_add_form_validation()
@@ -102,10 +119,10 @@ class Stocks extends BaseController
             // text_reason not required
             'text_date' => [
                 'label' => 'Data do movimento',
-                'rules' => 'required|valid_date[Y-m-d]',
+                'rules' => 'required|valid_date[Y-m-d H:i]',
                 'errors' => [
                     'required' => 'O campo {field} é obrigatório.',
-                    'valid_date' => 'O campo {field} deve conter data válida (Y-m-d).',
+                    'valid_date' => 'O campo {field} deve conter data válida (Y-m-d H:i).',
                 ],
             ],
         ];

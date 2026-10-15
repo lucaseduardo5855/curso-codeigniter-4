@@ -74,7 +74,7 @@
           <div class="row">
             <div class="col-sm-8 col-12 mb-3">
                 <label for="text_date" class="form-label">Data do movimento</label>
-                <input type="text" name="text_date" id="text_date" class="form-control" value="<?= old('text_date', date('Y-m-h')) ?>">
+                <input type="text" name="text_date" id="text_date" class="form-control" value="<?= old('text_date') ?>">
                 <?= display_errors('text_date', $validation_errors) ?>
             </div>
           </div>
@@ -99,7 +99,9 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     flatpickr('#text_date', {
-      date_Format: 'Y-m-d',
+      date_Format: 'Y-m-d H:i:',
+      time_24hr: true,
+      enableTime: true,
       maxDate: 'today'
     })
   })
