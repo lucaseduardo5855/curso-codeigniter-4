@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ProductModel;
 use App\Models\StockModel;
+use Config\Validation;
 
 class Stocks extends BaseController
 {
@@ -117,7 +118,46 @@ class Stocks extends BaseController
 
     public function remove_submit()
     {
-        echo 'remove submit';
+        // form validation
+        $validation = $this->validate($this->_stock_remove_form_validation());
+        if (!$validation) {
+            return redirect()->back()->withInput()->with('validation_errors', $this->validator->getErrors());
+        }
+
+        // check if id_product is valid
+        $id_product = Decrypt($this->request->getPost('id_product'));
+        if (empty($id_product)) {
+            return redirect()->back()->withInput()->with('server_error', 'Ocorreu um erro, ente novamente.');
+        }
+
+        // get post data
+        $text_stock = $this->request->getPost('text_stock');
+        $text_reason = $this->request->getPost('text_reason');
+        $text_date = $this->request->getPost('text_date');
+
+        //check if stock is available
+        $products_model = new ProductModel();
+        $product = $products_model->where('id', $id_product)->first();
+        if ($product->stock < intval($text_stock)) {
+            return redirect()->back()->withInput()->with('server_error', 'O estoque atual é inferior a quantidade existente.');
+        }
+
+        //store stock movement
+        $stocks_model = new StockModel();
+        $stocks_model->insert([
+            'id_product' => $id_product,
+            'stock_quantity' => intval($text_stock),
+            'stock_supplier' => 'Owner',
+            'reason' => $text_reason,
+            'stock_in_out' => 'OUT',
+            'created_at' => $text_date
+        ]);
+
+        // decrement product stock
+        $products_model->where('id', $id_product)
+                       ->set('stock', 'stock-' . intval($text_stock), false)
+                       ->update();
+        return redirect()->to('/stocks');
     }
 
     private function _stock_add_form_validation()
@@ -141,6 +181,34 @@ class Stocks extends BaseController
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'O campo {field} é obrigatório.',
+                ],
+            ],
+            // text_reason not required
+            'text_date' => [
+                'label' => 'Data do movimento',
+                'rules' => 'required|valid_date[Y-m-d H:i]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                    'valid_date' => 'O campo {field} deve conter data válida (Y-m-d H:i).',
+                ],
+            ],
+        ];
+    }
+
+    private function _stock_remove_form_validation()
+    {
+        // stock form validation rules
+        return [
+            'id_product' => [
+                'rules' => 'required'
+            ],
+            'text_stock' => [
+                'label' => 'Quantidade',
+                'rules' => 'required|numeric|greater_than[0]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório.',
+                    'numeric' => 'O campo {field} deve conter apenas números.',
+                    'greater_than' => 'O campo {field} deve conter um valor maior que {param}.',
                 ],
             ],
             // text_reason not required
