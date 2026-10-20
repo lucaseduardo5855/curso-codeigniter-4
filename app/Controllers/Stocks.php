@@ -80,10 +80,10 @@ class Stocks extends BaseController
         $stocks_model->insert([
             'id_product' => $id_product,
             'stock_quantity' => intval($text_stock),
+            'stock_in_out' => 'IN',
             'stock_supplier' => $text_supplier,
             'reason' => $text_reason,
-            'stock_in_out' => 'IN',
-            'created_at' => $text_date
+            'movement_date' => $text_date
         ]);
 
         //increment product stock
@@ -147,10 +147,10 @@ class Stocks extends BaseController
         $stocks_model->insert([
             'id_product' => $id_product,
             'stock_quantity' => intval($text_stock),
+            'stock_in_out' => 'OUT',
             'stock_supplier' => 'Owner',
             'reason' => $text_reason,
-            'stock_in_out' => 'OUT',
-            'created_at' => $text_date
+            'movement_date' => $text_date
         ]);
 
         // decrement product stock

@@ -15,8 +15,10 @@ class StockModel extends Model
     protected $allowedFields    = [
         'id_product',
         'stock_quantity',
-        'stock_suplier',
+        'stock_in_out',
+        'stock_supplier',
         'reason',
+        'movement_date',
         'created_at',
         'updated_at'
     ];
@@ -28,7 +30,7 @@ class StockModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

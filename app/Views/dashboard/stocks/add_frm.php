@@ -99,7 +99,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     flatpickr('#text_date', {
-      date_Format: 'Y-m-d H:i:',
+      dateFormat: 'Y-m-d H:i',
       time_24hr: true,
       enableTime: true,
       maxDate: 'today'
