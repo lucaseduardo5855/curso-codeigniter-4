@@ -186,6 +186,7 @@ class Stocks extends BaseController
         $data = [
            'title' => 'Stock',
            'page' => 'Movimentos Stock',
+           'datatables' => true,
            'product' => $product
         ];
 

@@ -11,8 +11,13 @@
     <link rel="stylesheet" href="<?= base_url('assets/libs/bootstrap/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/libs/fontawesome/all.min.css') ?>">
 
-    <!--Flatpickr-->
+    <!--Flatpicker-->
     <link rel="stylesheet" href="<?= base_url('/assets/libs/flatpickr/flatpickr.min.css') ?>">
+
+    <?php if (!empty($datatables)): ?>
+        <script src="<?= base_url('assets/libs/datatables/jquery/jquery.min.js') ?>"></script>
+        <link rel="stylesheet" href="<?= base_url('assets/libs/datatables/datatables.min.css') ?>">
+    <?php endif; ?>
 
     <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>">
 </head>
@@ -31,6 +36,10 @@
 
     <!--Flatpickr-->
     <script src="<?= base_url('/assets/libs/flatpickr/flatpickr.min.js') ?>"></script>
+
+    <?php if (!empty($datatables)): ?>
+        <script src="<?= base_url('assets/libs/datatables/datatables.min.js') ?>"></script>
+    <?php endif; ?>
 
 </body>
 </html>
