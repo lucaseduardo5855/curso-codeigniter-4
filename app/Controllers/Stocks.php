@@ -25,6 +25,10 @@ class Stocks extends BaseController
         return view('dashboard/stocks/index', $data);
     }
 
+    //---------------------------------------------------------------------
+    //add stock
+    //---------------------------------------------------------------------
+
     public function add($enc_id)
     {
         $id = Decrypt($enc_id);
@@ -94,6 +98,10 @@ class Stocks extends BaseController
         return redirect()->to('/stocks');
     }
 
+    //---------------------------------------------------------------------
+    //remove stock
+    //---------------------------------------------------------------------
+
     public function add_remove($enc_id)
     {
         $id = Decrypt($enc_id);
@@ -158,6 +166,30 @@ class Stocks extends BaseController
                        ->set('stock', 'stock-' . intval($text_stock), false)
                        ->update();
         return redirect()->to('/stocks');
+    }
+
+    //---------------------------------------------------------------------
+    //stock movements
+    //---------------------------------------------------------------------
+
+    public function movements($enc_id)
+    {
+        $id = Decrypt($enc_id);
+        if (empty($id)) {
+            return redirect()->to('/stocks');
+        }
+
+        //load product
+        $products_model = new ProductModel();
+        $product = $products_model->where('id', $id)->first();
+
+        $data = [
+           'title' => 'Stock',
+           'page' => 'Movimentos Stock',
+           'product' => $product
+        ];
+
+        return view('dashboard/stocks/movements', $data);
     }
 
     private function _stock_add_form_validation()
