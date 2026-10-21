@@ -33,6 +33,14 @@
 
       <hr>
 
+      <div class="my-3">
+      <a href="<?= site_url('/stocks/add/' . Encrypt($product->id)) ?>" class="btn btn-sm btn-outline-success px-3 m-1"><i class="fa-regular fa-square-plus me-2"></i>Adicionar estoque</a>
+
+      <a href="<?= site_url('/stocks/remove/' . Encrypt($product->id)) ?>" class="btn btn-sm btn-outline-danger px-3 m-1"><i class="fa-regular fa-square-minus me-2"></i>Excluir estoque</a>
+
+      <a href="<?= site_url('products/edit/' . Encrypt($product->id))  ?>" class="btn btn-sm btn-outline-secondary px-3 m-1"><i class="fa-regular fa-pen-to-square me-2"></i>Editar Produto</a>
+      </div>
+
       <table class="table table-striped table-bordered" id="table_movements">
           <thead class="table-dark">
                 <tr>
