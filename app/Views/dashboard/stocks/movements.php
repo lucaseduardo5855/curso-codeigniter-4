@@ -60,7 +60,31 @@
         { data: 'stock_in_out', className: 'text-center'},
         { data: 'stock_supplier', className: 'text-center'},
         { data: 'reason', className: 'text-center'},
-      ]
+      ],
+      language: {
+        decimal: "",
+        emptyTable: "Sem dados disponíveis na tabela.",
+        info: "Mostrando _START_ até _END_ de _TOTAL_ registos",
+        infoEmpty: "Mostrando 0 até 0 de 0 registos",
+        infoFiltered: "(Filtrando _MAX_ total de registos)",
+        infoPostFix: "",
+        thousands: ",",
+        lengthMenu: "Mostrando _MENU_ registos por página.",
+        loadingRecords: "Carregando...",
+        processing: "Processando...",
+        search: "Filtrar:",
+        zeroRecords: "Nenhum registro encontrado.",
+        paginate: {
+            first: "Primeira",
+            last: "Última",
+            next: "Seguinte",
+            previous: "Anterior"
+        },
+        aria: {
+            sortAscending: ": ative para classificar a coluna em ordem crescente.",
+            sortDescending: ": ative para classificar a coluna em ordem decrescente."
+        }
+    }
     });
   });
 </script>
