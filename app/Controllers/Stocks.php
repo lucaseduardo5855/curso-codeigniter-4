@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ProductModel;
 use App\Models\StockModel;
+use CodeIgniter\Model;
 use Config\Validation;
 
 class Stocks extends BaseController
@@ -187,11 +188,17 @@ class Stocks extends BaseController
            'title' => 'Stock',
            'page' => 'Movimentos Stock',
            'datatables' => true,
-           'product' => $product
+           'product' => $product,
+           'movements' => $this->_stock_movement($id)
         ];
 
         return view('dashboard/stocks/movements', $data);
     }
+
+    //---------------------------------------------------------------------
+    //private stock movements
+    //---------------------------------------------------------------------
+
 
     private function _stock_add_form_validation()
     {
@@ -254,5 +261,17 @@ class Stocks extends BaseController
                 ],
             ],
         ];
+    }
+
+    private function _stock_movement($id_product, $filters = [])
+    {
+        // load stock movement for the product limit to 10000 records
+        $stocks_model = new StockModel();
+        $movements = $stocks_model->where('id_product', $id_product)
+                                  ->orderBy('movement_date', 'DESC')
+                                  ->findAll(10000);
+        //filters
+        return $movements;
+
     }
 }

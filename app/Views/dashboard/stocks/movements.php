@@ -33,8 +33,36 @@
 
       <hr>
       
+      <table class="table table-striped table-bordered" id="table_movements">
+          <thead class="table-dark">
+                <tr>
+                  <th>Data do movimento</th>
+                  <th>Quantidade</th>
+                  <th>Operação</th>
+                  <th>Fornecedor</th>
+                  <th>Notas</th>
+                </tr>
+          </thead>
+          <tbody></tbody>
+      </table>
+      
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(() => {
+    $('#table_movements').DataTable({
+      data: <?= json_encode($movements) ?>,
+      columns: [
+        { data: 'movement_date'},
+        { data: 'stock_quantity'},
+        { data: 'stock_in_out'},
+        { data: 'stock_supplier'},
+        { data: 'reason'},
+      ]
+    });
+  });
+</script>
 
 <?= $this->endSection() ?>
