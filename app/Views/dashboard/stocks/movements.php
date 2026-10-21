@@ -32,15 +32,15 @@
       </div>
 
       <hr>
-      
+
       <table class="table table-striped table-bordered" id="table_movements">
           <thead class="table-dark">
                 <tr>
-                  <th>Data do movimento</th>
-                  <th>Quantidade</th>
-                  <th>Operação</th>
-                  <th>Fornecedor</th>
-                  <th>Notas</th>
+                  <th class="text-center">Data do movimento</th>
+                  <th class="text-center">Quantidade</th>
+                  <th class="text-center">Operação</th>
+                  <th class="text-center">Fornecedor</th>
+                  <th class="text-center">Notas</th>
                 </tr>
           </thead>
           <tbody></tbody>
@@ -55,11 +55,11 @@
     $('#table_movements').DataTable({
       data: <?= json_encode($movements) ?>,
       columns: [
-        { data: 'movement_date'},
-        { data: 'stock_quantity'},
-        { data: 'stock_in_out'},
-        { data: 'stock_supplier'},
-        { data: 'reason'},
+        { data: 'movement_date', className: 'text-center'},
+        { data: 'stock_quantity', className: 'text-center'},
+        { data: 'stock_in_out', className: 'text-center'},
+        { data: 'stock_supplier', className: 'text-center'},
+        { data: 'reason', className: 'text-center'},
       ]
     });
   });
